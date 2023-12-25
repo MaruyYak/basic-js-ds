@@ -8,39 +8,46 @@ const { NotImplementedError } = require('../extensions/index.js');
 */
 class BinarySearchTree {
 
+  tree = [];
+
   root() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if (this.tree.length === 0) {
+      return null
+    } else {
+      return this.tree[0];
+    }
   }
 
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  add(data) {
+    this.tree.push({data})
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    return !!this.find(data);
+  }  
+
+  find(data) {
+    return this.tree.find(element => element.data === data) || null;
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  remove(data) {
+    this.tree = this.tree.filter(element => element.data !== data);
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let minValue = Infinity;
+    this.tree.forEach((element) => {
+        minValue = element.data < minValue ? element.data : minValue;
+    })
+    return minValue === Infinity ? null : minValue;
   }
 
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let maxValue = -Infinity;
+    this.tree.forEach((element) => {
+        maxValue = element.data > maxValue ? element.data : maxValue;
+    })
+    return maxValue === -Infinity ? null : maxValue;
   }
 }
 
